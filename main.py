@@ -3,7 +3,6 @@ from __future__ import division
 from decimal import Decimal
 
 import argparse
-from operator import sub, add, mul
 import math
 import unittest
 import argparse
@@ -19,21 +18,20 @@ def doIt(operator, *args):
 		if (operator == '+'):
 			result = first_arg + second_arg 
 		elif (operator == '-'):
-			result = sub(first_arg, second_arg)
+			result = first_arg - second_arg
 		elif (operator == '*'):
-			result = mul(first_arg, second_arg)
+			result = first_arg * second_arg
 		elif (operator == '/'):
 			result = first_arg / second_arg
 		else:
 			raise TypeError("Данный калькулятор не поддерживает операцию: " + operator)
-			return 0; 
+
 		result = Decimal(result)	
 	elif(len(args) == 1):
 		if (operator == 'sin'):
 			result = math.sin(args[0])
 		else:
 			raise TypeError("Данный калькулятор не поддерживает операцию: " + operator)
-			return 0; 
 	else:
 		raise TypeError("Введенно некорректное количество аргументов")
 	return result       
