@@ -21,11 +21,24 @@ class OperatorsTestCase(unittest.TestCase):
 
 	def test_add(self):
 		self.assertEqual(doIt('+' , 6, 8), 14)
+
 	def test_addString(self):
 		self.assertEqual(doIt('+' , '6', '8'), 14)
 
+	def test_addNegative(self): 
+		self.assertEqual(doIt('-', '-5', '6'), -11)	
+
+	def test_addAllNegative(self): 
+		self.assertEqual(doIt('-', '-5', '-6'), 1)	
+
 	def test_sub(self):
 		self.assertEqual(doIt('-', 2, 3.5), -1.5)
+
+	def test_subAllNegative(self):
+		self.assertEqual(doIt('-', -2, -3.5), 1.5)
+
+	def test_subNegative(self):
+		self.assertEqual(doIt('-', -2, 3.5), -5.5)
 
 	def test_subString(self):
 		self.assertEqual(doIt('-', '2', '3.5'), -1.5)
@@ -39,6 +52,12 @@ class OperatorsTestCase(unittest.TestCase):
 	def test_mulString(self):
 		self.assertEqual(doIt('*', '2', '3.5'), 2 * 3.5)
 
+	def test_mulNegative(self):
+		self.assertEqual(doIt('*', -2, 3.5), -7)	
+
+	def test_mulAllNegative(self):
+		self.assertEqual(doIt('*', -2, -3.5), 7)
+
 	def test_div(self):
 		self.assertEqual(doIt('/', 10, 5), 2)
 
@@ -48,6 +67,9 @@ class OperatorsTestCase(unittest.TestCase):
 	def test_sin(self):
 		self.assertEqual(doIt('sin', 2), sin(2))
 
+	def test_sin(self):
+		self.assertEqual(doIt('sin', 0), 0)
+		
 	def test_invalid_count_args(self):
 		with self.assertRaises(TypeError):
 			doIt('sin', 1, 2)
@@ -55,5 +77,6 @@ class OperatorsTestCase(unittest.TestCase):
 	def test_div_null(self):
 		with self.assertRaises(ZeroDivisionError):
 			doIt('/', 2, 0)
+
 	def test_sum_float(self):
 		self.assertEqual(doIt('+', '0.1', '0.2'), Decimal('0.3'))
